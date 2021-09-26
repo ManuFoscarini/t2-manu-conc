@@ -72,15 +72,17 @@ class Funcionario(Thread):
 
     # Funcionário limpa o vestiário feminino. ATENÇÃO: o vestiário precisa estar vazio!!!
     def limpar_vest_feminino(self):
-        # espera até conseguir limpar o vestiáro femenino
+        # espera até conseguir limpar o vestiáro feminino
         while init.esperando_para_limpar_vestiario_feminino:      
-            # caso nenhuma ducha esteja ocupada, limpa o vestiário femenino
+            # caso o vestiario feminino esteja vazio, limpa o vestiário feminino
             if init.vestiario_feminino == 0:
                 self.log("Iniciando limpeza do vestiário feminino")
-                # bloqueia o vestiário femenino
+
+                # bloqueia o vestiário feminino
                 init.limpando_vestiario_feminino = True
                 # não está mais esperando
                 init.esperando_para_limpar_vestiario_feminino = False
+                
                 sleep(init.tempo_limpeza_vestiario * init.unidade_de_tempo)
                 sleep(init.quant_duchas_por_vestiario * init.tempo_limpeza_ducha * init.unidade_de_tempo)
                 
